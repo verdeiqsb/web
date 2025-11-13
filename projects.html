@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - VerdeIQ Sdn Bhd</title>
+    <meta name="description" content="Explore VerdeIQ's past projects and case studies in intelligent systems.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">VerdeIQ</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">Organization</a></li>
+                <li><a href="vision-mission.html" class="nav-link">Vision & Mission</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Projects</h1>
+            <p class="page-subtitle">Past Projects & Case Studies</p>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="content-section filter-section">
+        <div class="container">
+            <div class="filter-card">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search projects by name, domain, or technology..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="agriculture">🌾 Agriculture</button>
+                    <button class="filter-btn" data-filter="flood">🌊 Flood Mitigation</button>
+                    <button class="filter-btn" data-filter="environment">🌱 Environment</button>
+                    <button class="filter-btn" data-filter="facility">🏢 Facility</button>
+                    <button class="filter-btn" data-filter="electrical">⚡ Electrical</button>
+                    <button class="filter-btn" data-filter="future">🔮 Future Projects</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="content-section">
+        <div class="container">
+            <div id="projectsContainer" class="projects-container">
+                <!-- Projects will be dynamically inserted here -->
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <p>No projects found matching your search criteria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>VerdeIQ Sdn Bhd</h4>
+                    <p>Engineering Tomorrow's Ecosystems Today</p>
+                    <p class="footer-location">📍 Kuala Lumpur, Malaysia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">Organization</a></li>
+                        <li><a href="vision-mission.html">Vision & Mission</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Core Values</h4>
+                    <ul>
+                        <li>🌱 Sustainability-first</li>
+                        <li>🧠 Intelligence over instrumentation</li>
+                        <li>🔄 Redundancy and resilience</li>
+                        <li>🤝 Open-source collaboration</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VerdeIQ Sdn Bhd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Projects data
+        const projectsData = [
+            {
+                id: 1,
+                name: "Smart Irrigation Dashboard",
+                category: "agriculture",
+                domain: "Agriculture & Irrigation",
+                year: "2021",
+                description: "Real-time soil moisture monitoring, pump control, weather overlays, and crop analytics system.",
+                technologies: ["MQTT", "Raspberry Pi", "TensorFlow", "Azure IoT"],
+                features: [
+                    "Real-time soil moisture sensors",
+                    "Automated pump and valve control",
+                    "Weather forecasting integration",
+                    "Crop yield prediction",
+                    "Mobile app dashboard"
+                ],
+                status: "completed"
+            },
+            {
+                id: 2,
+                name: "Flood Alert System",
+                category: "flood",
+                domain: "Flood Mitigation",
+                year: "2022",
+                description: "Rainfall prediction, drainage control automation, and SMS/email alert system for communities.",
+                technologies: ["IoT Sensors", "AI Modeling", "SMS Gateway", "Cloud Platform"],
+                features: [
+                    "Real-time rainfall telemetry",
+                    "Automated sluice gates",
+                    "Community SMS alerts",
+                    "Flood prediction modeling",
+                    "Emergency response integration"
+                ],
+                status: "completed"
+            },
+            {
+                id: 3,
+                name: "Cleanroom Monitoring Suite",
+                category: "facility",
+                domain: "Facility Management",
+                year: "2022",
+                description: "Particle count monitoring, pressure differential control, HVAC automation, and ISO compliance reporting.",
+                technologies: ["BACnet", "Grafana", "InfluxDB", "Edge Computing"],
+                features: [
+                    "Particle count sensors",
+                    "Pressure differential control",
+                    "HVAC automation",
+                    "ISO compliance reporting",
+                    "Real-time dashboards"
+                ],
+                status: "completed"
+            },
+            {
+                id: 4,
+                name: "Energy Optimization Report System",
+                category: "electrical",
+                domain: "Electrical Systems",
+                year: "2023",
+                description: "Baseline vs optimized consumption analysis, predictive load balancing, and ROI calculation system.",
+                technologies: ["Modbus", "AI Forecasting", "Energy Analytics", "Cloud Platform"],
+                features: [
+                    "Energy consumption tracking",
+                    "Predictive load balancing",
+                    "ROI analysis",
+                    "Peak shaving automation",
+                    "Carbon footprint tracking"
+                ],
+                status: "completed"
+            },
+            {
+                id: 5,
+                name: "Facility Management Portal",
+                category: "facility",
+                domain: "Facility Management",
+                year: "2023",
+                description: "Unified control of HVAC, lighting, access control, alarms, and environmental sensors across multiple sites.",
+                technologies: ["BACnet", "OPC-UA", "Web Dashboard", "Mobile App"],
+                features: [
+                    "Multi-site management",
+                    "Unified dashboard",
+                    "Access control integration",
+                    "Alarm management",
+                    "Environmental monitoring"
+                ],
+                status: "completed"
+            },
+            {
+                id: 6,
+                name: "Air Quality Monitoring Network",
+                category: "environment",
+                domain: "Environmental Monitoring",
+                year: "2023",
+                description: "City-wide air quality sensor network with real-time dashboards and public API access.",
+                technologies: ["IoT Sensors", "MQTT", "Public API", "Data Visualization"],
+                features: [
+                    "PM2.5 and CO2 monitoring",
+                    "Real-time public dashboards",
+                    "Open API for developers",
+                    "Mobile app alerts",
+                    "Historical data analysis"
+                ],
+                status: "completed"
+            },
+            {
+                id: 7,
+                name: "AgroVerse",
+                category: "future",
+                domain: "Agriculture & Irrigation",
+                year: "2025-2030",
+                description: "A decentralized AI-powered farming network for Southeast Asia with blockchain crop traceability and shared irrigation infrastructure.",
+                technologies: ["Blockchain", "AI", "IoT", "Decentralized Network"],
+                features: [
+                    "Blockchain crop traceability",
+                    "Shared irrigation infrastructure",
+                    "AI-driven yield prediction",
+                    "Farmer-to-farmer data exchange",
+                    "Decentralized network"
+                ],
+                status: "planned"
+            },
+            {
+                id: 8,
+                name: "FloodShield 360",
+                category: "future",
+                domain: "Flood Mitigation",
+                year: "2025-2030",
+                description: "Predictive flood defense grid with AI flood modeling, IoT drainage control, and integration with national disaster response systems.",
+                technologies: ["AI Modeling", "IoT", "GIS", "Emergency Systems"],
+                features: [
+                    "AI flood modeling",
+                    "IoT drainage control",
+                    "Community alert systems",
+                    "National disaster response integration",
+                    "Predictive analytics"
+                ],
+                status: "planned"
+            },
+            {
+                id: 9,
+                name: "GreenCore",
+                category: "future",
+                domain: "Facility Management",
+                year: "2025-2030",
+                description: "Carbon-negative building automation system with HVAC optimization, solar + battery orchestration, and ESG reporting.",
+                technologies: ["AI Optimization", "Solar Integration", "Battery Systems", "ESG Reporting"],
+                features: [
+                    "HVAC optimization",
+                    "Solar + battery orchestration",
+                    "ESG reporting",
+                    "Carbon credits tracking",
+                    "LEED/GBI certification support"
+                ],
+                status: "planned"
+            },
+            {
+                id: 10,
+                name: "AetherNet",
+                category: "future",
+                domain: "Environmental Monitoring",
+                year: "2025-2030",
+                description: "Unified environmental sensing mesh network with air/water/noise sensors, real-time dashboards, and citizen engagement via mobile apps.",
+                technologies: ["Mesh Network", "Multi-Sensor", "Public API", "Mobile Apps"],
+                features: [
+                    "Air/water/noise sensors",
+                    "Real-time municipal dashboards",
+                    "Open API for developers",
+                    "Citizen engagement apps",
+                    "Unified sensing mesh"
+                ],
+                status: "planned"
+            },
+            {
+                id: 11,
+                name: "VerdeGrid",
+                category: "future",
+                domain: "Electrical Systems",
+                year: "2025-2030",
+                description: "AI-optimized microgrid with solar, wind, diesel, and battery orchestration, featuring load forecasting and grid-independent operation.",
+                technologies: ["AI Optimization", "Microgrid", "Renewable Energy", "Battery Systems"],
+                features: [
+                    "Solar, wind, diesel, battery orchestration",
+                    "Load forecasting",
+                    "Peak shaving",
+                    "Grid-independent operation",
+                    "Smart facility integration"
+                ],
+                status: "planned"
+            },
+            {
+                id: 12,
+                name: "Water Quality Monitoring System",
+                category: "environment",
+                domain: "Environmental Monitoring",
+                year: "2024",
+                description: "Comprehensive water quality monitoring with pH, turbidity, conductivity, and heavy metal detection sensors.",
+                technologies: ["Water Sensors", "IoT", "Cloud Analytics", "Alert System"],
+                features: [
+                    "pH monitoring",
+                    "Turbidity detection",
+                    "Conductivity measurement",
+                    "Heavy metal detection",
+                    "Automated alerts"
+                ],
+                status: "completed"
+            }
+        ];
+
+        // Render projects
+        function renderProjects(projects) {
+            const container = document.getElementById('projectsContainer');
+            const noResults = document.getElementById('noResults');
+            
+            if (projects.length === 0) {
+                container.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            container.innerHTML = projects.map(project => `
+                <div class="project-card-detailed" data-category="${project.category}" data-status="${project.status}">
+                    <div class="project-header">
+                        <div class="project-badge ${project.status}">${project.status === 'completed' ? '✓ Completed' : '🔮 Planned'}</div>
+                        <div class="project-year">${project.year}</div>
+                    </div>
+                    <h3 class="project-name">${project.name}</h3>
+                    <p class="project-domain">${project.domain}</p>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-technologies">
+                        <strong>Technologies:</strong>
+                        <div class="tech-tags-small">
+                            ${project.technologies.map(tech => `<span class="tech-tag-small">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="project-features">
+                        <strong>Key Features:</strong>
+                        <ul>
+                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter and search functionality
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        function filterProjects() {
+            let filtered = projectsData.filter(project => {
+                const matchesFilter = currentFilter === 'all' || project.category === currentFilter;
+                const matchesSearch = currentSearch === '' || 
+                    project.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                    project.domain.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                    project.description.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                    project.technologies.some(tech => tech.toLowerCase().includes(currentSearch.toLowerCase()));
+                return matchesFilter && matchesSearch;
+            });
+            renderProjects(filtered);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects(projectsData);
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.filter;
+                    filterProjects();
+                });
+            });
+
+            // Search input
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                filterProjects();
+            });
+        });
+    </script>
+</body>
+</html>
+
