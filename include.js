@@ -65,9 +65,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="footer-section">
                 <h4>Contact</h4>
                 <ul>
-                    <li>WhatsApp: <a href="https://wa.me/`+ph_num+`?text=Hi!%20I%27m%20interested%20to%20enquire%20more." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="material-symbols-outlined icon-svg" aria-hidden="true">chat</span> `+ph_num_f+`</a></li>
-                    <li>Telegram: <a href="https://t.me/`+tg_handle+`" target="_blank" rel="noopener" aria-label="Telegram"><span id="phone" class="material-symbols-outlined icon-svg" aria-hidden="true">send</span> @`+tg_handle+`</a></li>
-                    <li>Email: <a href="mailto:`+e_ma+`"><span class="material-symbols-outlined icon-svg" aria-hidden="true">email</span> `+e_ma+`</a></li>
+                    <li>
+                        WhatsApp:
+                        <a href="#" class="contact-wa" data-enc="NjAxOTIyMjAwMzM=" aria-label="WhatsApp" rel="noopener">
+                            <span class="material-symbols-outlined icon-svg" aria-hidden="true">chat</span>
+                            <span class="contact-display">+6019-222 ****</span>
+                        </a>
+                        <button class="contact-reveal" data-target=".contact-wa" data-type="wa" aria-label="Reveal WhatsApp">Reveal</button>
+                    </li>
+                    <li>
+                        Telegram:
+                        <a href="#" class="contact-tg" data-enc="dmVyZGVpcQ==" aria-label="Telegram" rel="noopener">
+                            <span id="phone" class="material-symbols-outlined icon-svg" aria-hidden="true">send</span>
+                            <span class="contact-display">@v*****q</span>
+                        </a>
+                        <button class="contact-reveal" data-target=".contact-tg" data-type="tg" aria-label="Reveal Telegram">Reveal</button>
+                    </li>
+                    <li>
+                        Email:
+                        <a href="#" class="contact-email" data-enc="dmVyZGVpcXNiQGdtYWlsLmNvbQ==" aria-label="Email">
+                            <span class="material-symbols-outlined icon-svg" aria-hidden="true">email</span>
+                            <span class="contact-display">verdeiqsb [at] gmail [dot] com</span>
+                        </a>
+                        <button class="contact-reveal" data-target=".contact-email" data-type="email" aria-label="Reveal Email">Reveal</button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -203,6 +224,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // After includes have been loaded, decode obfuscated contact info in footer
+// Setup click-to-reveal contact handlers (requires user action + short delay)
 document.addEventListener('includes:loaded', () => {
     const footer = document.querySelector('.footer');
     if (!footer) return;
@@ -210,7 +232,6 @@ document.addEventListener('includes:loaded', () => {
     const rev = (s) => s.split('').reverse().join('');
 
     function formatPhone(digits) {
-        // Expect digits like '60192220033'
         if (digits.startsWith('60') && digits.length >= 11) {
             const cc = '+' + digits.slice(0,2);
             const rest = digits.slice(2);
@@ -219,34 +240,59 @@ document.addEventListener('includes:loaded', () => {
         return digits;
     }
 
-    // WhatsApp
-    const wa = footer.querySelector('.contact-wa');
-    if (wa && wa.dataset.enc) {
-        const reversed = wa.dataset.enc.trim();
-        const decoded = rev(reversed);
-        const href = `https://wa.me/${decoded}?text=${encodeURIComponent("Hi! I'm interested to enquire more.")}`;
-        wa.setAttribute('href', href);
-        const disp = wa.querySelector('.contact-display');
-        if (disp) disp.textContent = formatPhone(decoded);
+    function revealAnchor(anchor) {
+        if (!anchor || !anchor.dataset.enc) return;
+        const enc = anchor.dataset.enc.trim();
+        let decoded;
+        // try base64 decode first (stronger obfuscation); fallback to reversed string
+        try {
+            decoded = atob(enc);
+        } catch (err) {
+            decoded = rev(enc);
+        }
+        if (anchor.classList.contains('contact-wa')) {
+            const href = `https://wa.me/${decoded}?text=${encodeURIComponent("Hi! I'm interested to enquire more.")}`;
+            anchor.setAttribute('href', href);
+            anchor.setAttribute('target', '_blank');
+            const disp = anchor.querySelector('.contact-display');
+            if (disp) disp.textContent = formatPhone(decoded);
+        } else if (anchor.classList.contains('contact-tg')) {
+            anchor.setAttribute('href', `https://t.me/${decoded}`);
+            const disp = anchor.querySelector('.contact-display');
+            if (disp) disp.textContent = '@' + decoded;
+        } else if (anchor.classList.contains('contact-email')) {
+            anchor.setAttribute('href', `mailto:${decoded}`);
+            const disp = anchor.querySelector('.contact-display');
+            if (disp) disp.textContent = decoded;
+        }
+        // make anchor focusable/clickable now
+        anchor.classList.add('contact-revealed');
     }
 
-    // Telegram
-    const tg = footer.querySelector('.contact-tg');
-    if (tg && tg.dataset.enc) {
-        const decoded = rev(tg.dataset.enc.trim());
-        tg.setAttribute('href', `https://t.me/${decoded}`);
-        const disp = tg.querySelector('.contact-display');
-        if (disp) disp.textContent = '@' + decoded;
-    }
-
-    // Email
-    const em = footer.querySelector('.contact-email');
-    if (em && em.dataset.enc) {
-        const decoded = rev(em.dataset.enc.trim());
-        em.setAttribute('href', `mailto:${decoded}`);
-        const disp = em.querySelector('.contact-display');
-        if (disp) disp.textContent = decoded;
-    }
+    footer.querySelectorAll('.contact-reveal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSel = btn.dataset.target;
+            const anchor = footer.querySelector(targetSel);
+            if (!anchor || !anchor.dataset.enc) return;
+            // simple countdown before reveal to raise bot cost
+            let t = 3;
+            btn.disabled = true;
+            const orig = btn.textContent;
+            btn.textContent = `Revealing ${t}...`;
+            const iv = setInterval(() => {
+                t -= 1;
+                if (t > 0) {
+                    btn.textContent = `Revealing ${t}...`;
+                } else {
+                    clearInterval(iv);
+                    revealAnchor(anchor);
+                    btn.textContent = 'Revealed';
+                    setTimeout(() => btn.remove(), 2000);
+                }
+            }, 1000);
+        });
+    });
 });
 
     // Projects page logic — moved from inline script in projects.html
