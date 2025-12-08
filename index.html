@@ -4,30 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VerdeIQ Sdn Bhd - Engineering Tomorrow's Ecosystems Today</title>
+    <link rel="icon" type="image/png" href="app.png">
     <meta name="description" content="VerdeIQ Sdn Bhd: Intelligent systems for agriculture, irrigation, flood mitigation, environmental monitoring, and facility management.">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo-icon">🌱</span>
-                <span class="logo-text">VerdeIQ</span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="about.html" class="nav-link">Organization</a></li>
-                <li><a href="vision-mission.html" class="nav-link">Vision & Mission</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <div data-include="includes/header.html"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -38,7 +21,7 @@
             <div class="hero-content">
                 <h1 class="hero-title animate-fade-in">
                     <span class="highlight">Engineering Tomorrow's</span>
-                    <span class="highlight">Ecosystems Today</span>
+                    <span class="highlight">ecosystems Today</span>
                 </h1>
                 <p class="hero-subtitle animate-fade-in-delay">
                     Transforming traditional infrastructure into smart, adaptive ecosystems through IoT, AI, and cloud-native platforms.
@@ -50,16 +33,34 @@
             </div>
             <div class="hero-visual">
                 <div class="floating-card card-1">
-                    <div class="card-icon">🌾</div>
-                    <div class="card-text">Smart Agriculture</div>
+                    <div class="card-icon">
+                        <span class="material-symbols-outlined icon-svg floating-icon">temp_preferences_eco</span>
+                        <div class="card-text">Smart Agriculture</div>
+                    </div>
                 </div>
                 <div class="floating-card card-2">
-                    <div class="card-icon">🌊</div>
-                    <div class="card-text">Flood Mitigation</div>
+                    <div class="card-icon">
+                        <span class="material-symbols-outlined icon-svg floating-icon">flood</span>
+                        <div class="card-text">Flood Mitigation</div>
+                    </div>
                 </div>
                 <div class="floating-card card-3">
-                    <div class="card-icon">🏢</div>
+                    <div class="card-icon">
+                        <span class="material-symbols-outlined icon-svg floating-icon">apartment</span>
                     <div class="card-text">Facility Management</div>
+                    </div>
+                </div>
+                <div class="floating-card card-4">
+                    <div class="card-icon">
+                        <span class="material-symbols-outlined icon-svg floating-icon">flash_on</span>
+                        <div class="card-text">Electrical Systems</div>
+                    </div>
+                </div>
+                <div class="floating-card card-5">
+                    <div class="card-icon">
+                        <span class="material-symbols-outlined icon-svg floating-icon">humidity_indoor</span>
+                        <div class="card-text">Environmental Monitoring</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,112 +75,99 @@
             <h2 class="section-title">Core Innovation Domains</h2>
             <p class="section-subtitle">Intelligent systems across multiple sectors</p>
             <div class="domains-grid">
-                <div class="domain-card" data-domain="agriculture">
-                    <div class="domain-icon">🌾</div>
-                    <h3>Agriculture & Irrigation</h3>
-                    <p>Smart irrigation, AI-driven crop prediction, and automated fertigation control</p>
+                <div class="domain-card" data-domain="facility">
+                    <div class="domain-icon">
+                        <span class="material-symbols-outlined icon-svg domain-icon-img">apartment</span>
+                    </div>
+                    <h3>Facility Management</h3>
+                    <p>Monitoring and Control of HVAC, environment, cleanroom automation, and optimization</p>
                     <ul class="domain-features">
-                        <li>Soil moisture sensors</li>
-                        <li>Weather forecasting</li>
-                        <li>Pest detection</li>
-                    </ul>
-                </div>
-                <div class="domain-card" data-domain="flood">
-                    <div class="domain-icon">🌊</div>
-                    <h3>Flood Mitigation</h3>
-                    <p>Real-time flood prediction and automated drainage control systems</p>
-                    <ul class="domain-features">
-                        <li>Rainfall telemetry</li>
-                        <li>Automated sluice gates</li>
-                        <li>Community alerts</li>
+                        <li>Temperature and Humidity</li>
+                        <li>Industrial instrumentation</li>
+                        <li>System optimization</li>
                     </ul>
                 </div>
                 <div class="domain-card" data-domain="environment">
-                    <div class="domain-icon">🌱</div>
+                    <div class="domain-icon">
+                        <span class="material-symbols-outlined icon-svg domain-icon-img">humidity_indoor</span>
+                    </div>
                     <h3>Environmental Monitoring</h3>
                     <p>Air and water quality sensors with real-time dashboards</p>
                     <ul class="domain-features">
-                        <li>PM2.5 & CO2 monitoring</li>
+                        <li>APC, PM2.5 & CO2 monitoring</li>
                         <li>Water quality sensors</li>
                         <li>ESG compliance</li>
                     </ul>
                 </div>
-                <div class="domain-card" data-domain="facility">
-                    <div class="domain-icon">🏢</div>
-                    <h3>Facility Management</h3>
-                    <p>Smart HVAC, cleanroom automation, and energy optimization</p>
+                <div class="domain-card" data-domain="electrical">
+                    <div class="domain-icon">
+                        <span class="material-symbols-outlined icon-svg domain-icon-img">flash_on</span>
+                    </div>
+                    <h3>Electrical Systems</h3>
+                    <p>Power system, quality and solar integration</p>
                     <ul class="domain-features">
-                        <li>Occupancy-based control</li>
-                        <li>Predictive maintenance</li>
-                        <li>Energy dashboards</li>
+                        <li>Power quality</li>
+                        <li>Grid-tied systems</li>
+                        <li>Real-Time Dashboards</li>
                     </ul>
                 </div>
-                <div class="domain-card" data-domain="electrical">
-                    <div class="domain-icon">⚡</div>
-                    <h3>Electrical Systems</h3>
-                    <p>Load balancing, predictive maintenance, and solar integration</p>
+                <div class="domain-card" data-domain="agriculture">
+                    <div class="domain-icon">
+                        <span class="material-symbols-outlined icon-svg domain-icon-img">temp_preferences_eco</span>
+                    </div>
+                    <h3>Agriculture & Irrigation</h3>
+                    <p>Smart crop prediction, irrigation and fertigation automation</p>
                     <ul class="domain-features">
-                        <li>Demand response</li>
-                        <li>Grid-tied systems</li>
-                        <li>Power quality monitoring</li>
+                        <li>Environmental control</li>
+                        <li>Growth prediction</li>
+                        <li>Smart dosing system</li>
+                    </ul>
+                </div>
+                <div class="domain-card" data-domain="flood">
+                    <div class="domain-icon">
+                        <span class="material-symbols-outlined icon-svg domain-icon-img">flood</span>
+                    </div>
+                    <h3>Flood Mitigation</h3>
+                    <p>Real-time flood prediction and automated drainage control systems</p>
+                    <ul class="domain-features">
+                        <li>Live remote telemetry</li>
+                        <li>Automated gate control</li>
+                        <li>Real-time alerts</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technology Stack Section -->
-    <section class="tech-section">
+
+    <div data-include="includes/tech-stack.html"></div>
+
+    <!-- Open Source & Community -- >
+    <section class="content-section">
         <div class="container">
-            <h2 class="section-title">Technology Stack</h2>
-            <div class="tech-grid">
-                <div class="tech-category">
-                    <h3>Protocols</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">MQTT</span>
-                        <span class="tech-tag">Modbus</span>
-                        <span class="tech-tag">BACnet</span>
-                        <span class="tech-tag">OPC-UA</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3>Cloud Platforms</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Azure IoT Hub</span>
-                        <span class="tech-tag">AWS Greengrass</span>
-                        <span class="tech-tag">Kubernetes</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3>Edge Devices</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Raspberry Pi</span>
-                        <span class="tech-tag">Jetson Nano</span>
-                        <span class="tech-tag">ESP32</span>
-                        <span class="tech-tag">STM32</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3>AI Models</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">ONNX</span>
-                        <span class="tech-tag">YOLOv8</span>
-                    </div>
-                </div>
+            <div class="content-card">
+                <h2>Open Source & Community</h2>
+                <p>We build on and contribute to established open-source projects and maintain community integrations.</p>
+                <ul class="open-source-list">
+                    <li><strong>Home Assistant</strong> — integrations and device drivers</li>
+                    <li><strong>Node-RED</strong> — flow-based automation templates</li>
+                    <li><strong>Grafana</strong> — dashboards and visualizations</li>
+                    <li><strong>InfluxDB</strong> — time-series ingestion connectors</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Top Projects Preview -->
     <section class="projects-preview">
         <div class="container">
             <h2 class="section-title">World-Changing Projects</h2>
-            <p class="section-subtitle">Our vision for 2025–2030</p>
+            <p class="section-subtitle">(For future coming plans)</p>
+            <p class="section-subtitle">Industry Leadership, Decade Ahead Innovation, Sustainable Future</p>
+
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-number">01</div>
+                    <div class="project-number">01</div>    
                     <h3>AgroVerse</h3>
                     <p>Decentralized AI-powered farming network for Southeast Asia</p>
                 </div>
@@ -210,40 +198,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>VerdeIQ Sdn Bhd</h4>
-                    <p>Engineering Tomorrow's Ecosystems Today</p>
-                    <p class="footer-location">📍 Kuala Lumpur, Malaysia</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">Organization</a></li>
-                        <li><a href="vision-mission.html">Vision & Mission</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Core Values</h4>
-                    <ul>
-                        <li>🌱 Sustainability-first</li>
-                        <li>🧠 Intelligence over instrumentation</li>
-                        <li>🔄 Redundancy and resilience</li>
-                        <li>🤝 Open-source collaboration</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 VerdeIQ Sdn Bhd. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div data-include="includes/footer.html"></div>
 
+    <script src="include.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

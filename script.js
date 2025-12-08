@@ -1,31 +1,73 @@
 // ===== Navigation Toggle =====
-document.addEventListener('DOMContentLoaded', () => {
+function initNav() {
+    // Prevent multiple global initializations
+    if (window.__navInitialized) return;
+
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
+    if (!navToggle || !navMenu) return;
+
+    // Replace the toggle with a clone to remove any previous listeners attached
+    navToggle.replaceWith(navToggle.cloneNode(true));
+    const newNavToggle = document.getElementById('navToggle');
+
+    // Accessibility: set ARIA attributes
+    newNavToggle.setAttribute('aria-expanded', 'false');
+    newNavToggle.setAttribute('aria-controls', 'navMenu');
+
+    function openMenu() {
+        navMenu.classList.add('active');
+        newNavToggle.classList.add('active');
+        newNavToggle.setAttribute('aria-expanded', 'true');
+        // focus first link for keyboard users
+        const firstLink = navMenu.querySelector('.nav-link');
+        if (firstLink) firstLink.focus();
     }
 
-    // Close menu when clicking on a link
+    function closeMenu() {
+        navMenu.classList.remove('active');
+        newNavToggle.classList.remove('active');
+        newNavToggle.setAttribute('aria-expanded', 'false');
+        newNavToggle.focus();
+    }
+
+    newNavToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu.classList.contains('active')) closeMenu(); else openMenu();
+    });
+
+    // Close menu when clicking on a link and set active link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
+            closeMenu();
+            // ensure the clicked link shows active state
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
         });
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
+        if (!newNavToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            if (navMenu.classList.contains('active')) closeMenu();
         }
     });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    window.__navInitialized = true;
+}
+
+document.addEventListener('DOMContentLoaded', initNav);
+document.addEventListener('includes:loaded', () => {
+    initNav();
 });
 
 // ===== Navbar Scroll Effect =====
@@ -72,7 +114,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
+function initAnimations() {
     const animatedElements = document.querySelectorAll('.domain-card, .tech-category, .project-card, .value-card, .vm-card, .project-card-detailed');
     
     animatedElements.forEach(el => {
@@ -81,18 +123,23 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initAnimations);
+document.addEventListener('includes:loaded', initAnimations);
 
 // ===== Domain Card Hover Effects =====
-document.querySelectorAll('.domain-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
+function initDomainHover() {
+    document.querySelectorAll('.domain-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
     });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
+}
 
 // ===== Counter Animation (if needed) =====
 function animateCounter(element, target, duration = 2000) {
@@ -184,8 +231,9 @@ function setActiveNavLink() {
     });
 }
 
-// Set active link on page load
-setActiveNavLink();
+// Set active link on page load and after includes injected
+document.addEventListener('DOMContentLoaded', setActiveNavLink);
+document.addEventListener('includes:loaded', setActiveNavLink);
 
 // ===== Scroll to Top Button (optional enhancement) =====
 function createScrollToTopButton() {
@@ -256,27 +304,34 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// ===== Table Row Hover Effects =====
 document.querySelectorAll('.data-table tbody tr').forEach(row => {
-    row.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = '#f5fbf6';
-        this.style.transform = 'scale(1.01)';
-        this.style.transition = 'all 0.2s ease';
-    });
-    
-    row.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = '';
-        this.style.transform = 'scale(1)';
-    });
 });
 
-// ===== Filter Button Active State Management =====
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+// ===== Table Row Hover Effects =====
+function initTableRowHover() {
+    document.querySelectorAll('.data-table tbody tr').forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#f5fbf6';
+            this.style.transform = 'scale(1.01)';
+            this.style.transition = 'all 0.2s ease';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+            this.style.transform = 'scale(1)';
+        });
     });
-});
+}
+
+// ===== Filter Button Active State Management =====
+function initFilterButtonState() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+}
 
 // ===== Search Input Debounce (for better performance) =====
 function debounce(func, wait) {
@@ -300,3 +355,15 @@ if (searchInput) {
     searchInput.addEventListener('input', debouncedSearch);
 }
 
+// Initialize UI parts after DOM and after includes injected
+document.addEventListener('DOMContentLoaded', () => {
+    initDomainHover();
+    initTableRowHover();
+    initFilterButtonState();
+});
+
+document.addEventListener('includes:loaded', () => {
+    initDomainHover();
+    initTableRowHover();
+    initFilterButtonState();
+});
