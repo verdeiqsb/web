@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         WhatsApp:
                         <a href="#" class="contact-wa" data-enc="=MzMwAjMyITOxAjN" aria-label="WhatsApp" rel="noopener">
                             <span class="material-symbols-outlined icon-svg" aria-hidden="true">chat</span>
-                            <span class="contact-display">+6019-222 ****</span>
+                            <span class="contact-display">+</span>
                         </a>
                         <button class="contact-reveal" data-target=".contact-wa" data-type="wa" aria-label="Reveal WhatsApp">Reveal</button>
                     </li>
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         Telegram:
                         <a href="#" class="contact-tg" data-enc="==QcpVGZyVmd" aria-label="Telegram" rel="noopener">
                             <span id="phone" class="material-symbols-outlined icon-svg" aria-hidden="true">send</span>
-                            <span class="contact-display">@v*****q</span>
+                            <span class="contact-display">@</span>
                         </a>
                         <button class="contact-reveal" data-target=".contact-tg" data-type="tg" aria-label="Reveal Telegram">Reveal</button>
                     </li>
