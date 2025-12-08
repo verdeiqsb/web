@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="footer-section">
                 <h4>Contact</h4>
                 <ul>
-                    <li>WhatsApp: <a href="https://wa.me/`+ph_num+`?text=Hi!%20I'm%20interested%20to%20enquire%20more." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="material-symbols-outlined icon-svg" aria-hidden="true">chat</span> `+ph_num_f+`</a></li>
+                    <li>WhatsApp: <a href="https://wa.me/`+ph_num+`?text=Hi!%20I%27m%20interested%20to%20enquire%20more." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="material-symbols-outlined icon-svg" aria-hidden="true">chat</span> `+ph_num_f+`</a></li>
                     <li>Telegram: <a href="https://t.me/`+tg_handle+`" target="_blank" rel="noopener" aria-label="Telegram"><span id="phone" class="material-symbols-outlined icon-svg" aria-hidden="true">send</span> @`+tg_handle+`</a></li>
                     <li>Email: <a href="mailto:`+e_ma+`"><span class="material-symbols-outlined icon-svg" aria-hidden="true">email</span> `+e_ma+`</a></li>
                 </ul>
@@ -200,6 +200,53 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Notify listeners that includes have been loaded
     document.dispatchEvent(new CustomEvent('includes:loaded'));
+});
+
+// After includes have been loaded, decode obfuscated contact info in footer
+document.addEventListener('includes:loaded', () => {
+    const footer = document.querySelector('.footer');
+    if (!footer) return;
+
+    const rev = (s) => s.split('').reverse().join('');
+
+    function formatPhone(digits) {
+        // Expect digits like '60192220033'
+        if (digits.startsWith('60') && digits.length >= 11) {
+            const cc = '+' + digits.slice(0,2);
+            const rest = digits.slice(2);
+            return `${cc}${rest.slice(0,2)}-${rest.slice(2,5)} ${rest.slice(5)}`;
+        }
+        return digits;
+    }
+
+    // WhatsApp
+    const wa = footer.querySelector('.contact-wa');
+    if (wa && wa.dataset.enc) {
+        const reversed = wa.dataset.enc.trim();
+        const decoded = rev(reversed);
+        const href = `https://wa.me/${decoded}?text=${encodeURIComponent("Hi! I'm interested to enquire more.")}`;
+        wa.setAttribute('href', href);
+        const disp = wa.querySelector('.contact-display');
+        if (disp) disp.textContent = formatPhone(decoded);
+    }
+
+    // Telegram
+    const tg = footer.querySelector('.contact-tg');
+    if (tg && tg.dataset.enc) {
+        const decoded = rev(tg.dataset.enc.trim());
+        tg.setAttribute('href', `https://t.me/${decoded}`);
+        const disp = tg.querySelector('.contact-display');
+        if (disp) disp.textContent = '@' + decoded;
+    }
+
+    // Email
+    const em = footer.querySelector('.contact-email');
+    if (em && em.dataset.enc) {
+        const decoded = rev(em.dataset.enc.trim());
+        em.setAttribute('href', `mailto:${decoded}`);
+        const disp = em.querySelector('.contact-display');
+        if (disp) disp.textContent = decoded;
+    }
 });
 
     // Projects page logic — moved from inline script in projects.html
