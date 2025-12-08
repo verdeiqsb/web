@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <ul>
                     <li>
                         WhatsApp:
-                        <a href="#" class="contact-wa" data-enc="NjAxOTIyMjAwMzM=" aria-label="WhatsApp" rel="noopener">
+                        <a href="#" class="contact-wa" data-enc="=MzMwAjMyITOxAjN" aria-label="WhatsApp" rel="noopener">
                             <span class="material-symbols-outlined icon-svg" aria-hidden="true">chat</span>
                             <span class="contact-display">+6019-222 ****</span>
                         </a>
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </li>
                     <li>
                         Telegram:
-                        <a href="#" class="contact-tg" data-enc="dmVyZGVpcQ==" aria-label="Telegram" rel="noopener">
+                        <a href="#" class="contact-tg" data-enc="==QcpVGZyVmd" aria-label="Telegram" rel="noopener">
                             <span id="phone" class="material-symbols-outlined icon-svg" aria-hidden="true">send</span>
                             <span class="contact-display">@v*****q</span>
                         </a>
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </li>
                     <li>
                         Email:
-                        <a href="#" class="contact-email" data-enc="dmVyZGVpcXNiQGdtYWlsLmNvbQ==" aria-label="Email">
+                        <a href="#" class="contact-email" data-enc="==QbvNmLslWYtdGQiNXcpVGZyVmd" aria-label="Email">
                             <span class="material-symbols-outlined icon-svg" aria-hidden="true">email</span>
                             <span class="contact-display">verdeiqsb [at] gmail [dot] com</span>
                         </a>
@@ -244,11 +244,16 @@ document.addEventListener('includes:loaded', () => {
         if (!anchor || !anchor.dataset.enc) return;
         const enc = anchor.dataset.enc.trim();
         let decoded;
-        // try base64 decode first (stronger obfuscation); fallback to reversed string
+        // Preferred decode: reverse the stored string (we store reversed-base64), then base64-decode.
+        // Fallbacks: try direct base64, then plain reverse.
         try {
-            decoded = atob(enc);
-        } catch (err) {
-            decoded = rev(enc);
+            decoded = atob(rev(enc));
+        } catch (err1) {
+            try {
+                decoded = atob(enc);
+            } catch (err2) {
+                decoded = rev(enc);
+            }
         }
         if (anchor.classList.contains('contact-wa')) {
             const href = `https://wa.me/${decoded}?text=${encodeURIComponent("Hi! I'm interested to enquire more.")}`;
