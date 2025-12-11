@@ -9,9 +9,9 @@
     --bg-gray: #bdbdc3;
     --bg-white: #d4d4dd;
     /* Backwards-compatible mappings for existing CSS variables */
-    --primary-green: var(--accent-gold);
-    --primary-green-dark: var(--accent-gold-dark);
-    --primary-green-light: var(--accent-gold-light);
+    --primary-gold: var(--accent-gold);
+    --primary-gold-dark: var(--accent-gold-dark);
+    --primary-gold-light: var(--accent-gold-light);
     --bg-light: var(--bg-gray);
     --text-dark: #072a66;
     --text-muted: #4b5563;
@@ -120,7 +120,7 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--primary-green);
+    background: var(--primary-gold);
     transition: var(--transition);
 }
 
@@ -131,7 +131,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--primary-green);
+    color: var(--primary-gold);
 }
 
 .nav-toggle {
@@ -315,7 +315,7 @@ body {
 .mouse {
     width: 24px;
     height: 40px;
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary-gold);
     border-radius: 12px;
     position: relative;
 }
@@ -328,7 +328,7 @@ body {
     transform: translateX(-50%);
     width: 4px;
     height: 8px;
-    background: var(--primary-green);
+    background: var(--primary-gold);
     border-radius: 2px;
     animation: scroll 2s infinite;
 }
@@ -546,7 +546,7 @@ body {
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     font-size: 0.75rem;
-    color: var(--primary-green);
+    color: var(--dark-blue-deep);
 }
 
 /* ===== Projects Preview ===== */
@@ -607,7 +607,7 @@ body {
 
 /* ===== Page Header ===== */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-green-dark) 100%);
     color: white;
     padding: 3rem 0 1rem;
     text-align: center;
@@ -647,7 +647,7 @@ body {
 
 .highlight-card {
     background: linear-gradient(135deg, var(--bg-light) 0%, #e8f5ed 100%);
-    border: 2px solid var(--primary-green);
+    border: 2px solid var(--primary-gold);
 }
 
 .lead-text {
@@ -763,7 +763,7 @@ body {
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--primary-green);
+    color: var(--primary-gold);
 }
 
 /* ===== Vision & Mission ===== */
@@ -788,7 +788,7 @@ body {
 }
 
 .mission-card {
-    border-top: 4px solid var(--primary-green);
+    border-top: 4px solid var(--primary-gold);
 }
 
 .vision-card {
@@ -862,7 +862,7 @@ body {
     font-size: 2rem;
     font-weight: 600;
     font-style: italic;
-    color: var(--primary-green);
+    color: var(--primary-gold);
     margin: 2rem 0;
 }
 
@@ -955,7 +955,7 @@ body {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: var(--primary-green);
+    background: var(--primary-gold);
 }
 
 .timeline-item {
@@ -971,16 +971,16 @@ body {
     top: 0.5rem;
     width: 12px;
     height: 12px;
-    background: var(--primary-green);
+    background: var(--primary-gold);
     border-radius: 50%;
     border: 3px solid var(--bg-white);
-    box-shadow: 0 0 0 3px var(--primary-green);
+    box-shadow: 0 0 0 3px var(--primary-gold);
 }
 
 .timeline-year {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-green);
+    color: var(--primary-gold);
     margin-bottom: 0.5rem;
 }
 
@@ -1042,7 +1042,7 @@ body {
 
 .search-input:focus {
     outline: none;
-    border-color: var(--primary-green);
+    border-color: var(--primary-gold);
     box-shadow: 0 0 0 3px rgba(31, 138, 74, 0.1);
 }
 
@@ -1095,9 +1095,9 @@ body {
 
 .filter-btn:hover,
 .filter-btn.active {
-    background: var(--primary-green);
+    background: var(--primary-gold);
     color: white;
-    border-color: var(--primary-green);
+    border-color: var(--primary-gold);
 }
 
 .projects-container {
@@ -1113,7 +1113,7 @@ body {
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
-    border-top: 4px solid var(--primary-green);
+    border-top: 4px solid var(--primary-gold);
 }
 
 .project-card-detailed:hover {
@@ -1210,7 +1210,7 @@ body {
 
 .project-domain {
     font-size: 0.875rem;
-    color: var(--primary-green);
+    color: var(--primary-gold);
     font-weight: 600;
     margin-bottom: 1rem;
     text-transform: uppercase;
@@ -1262,7 +1262,7 @@ body {
     content: '•';
     position: absolute;
     left: 0;
-    color: var(--primary-green);
+    color: var(--primary-gold);
     font-weight: bold;
     font-size: 1.25rem;
 }
@@ -1361,7 +1361,7 @@ body {
 }
 .gallery-thumb img.active {
     opacity: 1;
-    border-color: var(--primary-green);
+    border-color: var(--primary-gold);
 }
 
 @media (max-width: 700px) {
